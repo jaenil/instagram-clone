@@ -18,11 +18,7 @@ const styles = (theme) => ({
      gridGap: '50px 100px' , 
      gridTemplateColumns: 'auto auto auto auto',
     } ,
-    second_container : {
-        display : 'grid' ,
-        flexDirection: 'row',
-        gridTemplateRows : '90% 10%'
-    } ,
+
     return_image :{
     width: '100% !important',
     maxWidth : '700px' ,
@@ -46,7 +42,7 @@ const View = (props) => {
     return(
         <React.Fragment>
             view component
-            <div className={classes.container}>
+            <div>
                 {results === null || results.length === 0 
                 ? 
                 <div> 
@@ -54,7 +50,7 @@ const View = (props) => {
                   <Link to="/capture">Capture</Link>
                 </div>
                 :
-                <div> 
+                <div className={classes.container}> 
                     {
                     results.map(image => {
                     return(

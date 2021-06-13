@@ -9,6 +9,7 @@ import './App.css';
 import WebcamComponent from './Components/Camera';
 import View from './Components/View' ;
 import NotFound from './Components/NotFound' ;
+import About from './Components/About.js' ;
 
 // Quota exceed error due to limited storage in localstorage .
 function App() {
@@ -23,6 +24,9 @@ function App() {
             <li>
               <Link to ='/gallery'>View</Link>
             </li>
+            <li>
+              <Link to ='/about'>About Us</Link>
+            </li>
           </ul>
         </nav>
         <div>
@@ -36,9 +40,13 @@ function App() {
             <Route path="/gallery">
               <View />
             </Route>
+            <Route path ='/about'>
+
+            </Route>
             <Route path="*">
               <NotFound />
             </Route>
+
           </Switch>
         </div>
       </div>
