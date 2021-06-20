@@ -31,8 +31,7 @@ function App() {
         </nav>
         <div>
           <Switch>
-            <Route exact path="/">
-              
+            <Route exact path="/">        
             </Route>
             <Route path='/capture' >
               <WebcamComponent />  
@@ -41,7 +40,7 @@ function App() {
               <View />
             </Route>
             <Route path ='/about'>
-
+              <About />
             </Route>
             <Route path="*">
               <NotFound />
