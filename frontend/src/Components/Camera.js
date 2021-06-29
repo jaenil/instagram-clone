@@ -11,22 +11,33 @@ const styles = (theme) => ({
     container :{
         width: '100% !important',
 		height: '100vh !important',
-      /*  display : 'flex' ,
-        alignItems :'center' ,
-        justifyContent : 'center' ,
-        */
+        overflow : 'hidden' ,
+    } ,
+    screenshot : {
+        flexShrink: 0,
+		width: 'auto',
+		height: '100%',
+		marginLeft: 'auto',
+		marginRight: 'auto',
+		marginTop: 'auto',
+		marginBottom: 'auto',
+    } ,
+    buttonPanel : { 
+        position: 'absolute',
+        height: '2cm',
+        bottom: '0.5cm',
+        zIndex: '2',
+    } ,
+    button : {
+        color: 'black',
+		width: '100%',
+		height: '100%',
     } ,
     webcam : {
         width: '100%' ,
         Height:'100%' ,
     }  ,
-    capture_img : { 
-        width: '60px',
-        hight: '60px',
-    } ,
-    delete_img : {
-      marginLeft : '40px' ,
-    }
+   
 })
 
 const WebcamComponent = (props) => {
@@ -49,59 +60,64 @@ const WebcamComponent = (props) => {
     }
     return(
         <>
-          <div className={classes.container}>
-                    <Webcam 
-                    mirrored={true}
-                    className={classes.webcam}
-                    imageSmoothing={true}
-                    ref= {webcamRef}
-                    audio={false}
-                    screenshotQuality={1}
-                    screenshotFormat ='image/jpeg'
-                    />
-                    {/* capture button*/}
-                    <IconButton 
-                    variant="contained"
-                    color="primary"
-                    size="medium"
-                    className={classes.capture_img}
-                    onClick={Capture}
-                    > 
-                    Click
-                    <PhotoCameraIcon />
-                    </IconButton>       
-            </div>
-            <div className={classes.container_images}>
-                {img_source === '' 
-                ? 
-                <div>  </div>
-                :
-                <div>
-                    <img src={img_source} alt='selfie'/>
-                         {/* save button*/}
-                         <IconButton
+        {img_source === '' ? 
+                <div className={classes.container}>
+                <Webcam 
+                mirrored={true}
+                className={classes.webcam}
+                imageSmoothing={true}
+                ref= {webcamRef}
+                audio={false}
+                screenshotQuality={1}
+                screenshotFormat ='image/jpeg'
+                />
+                <div className={classes.buttonPanel}>
+                {/* capture button*/}
+                <IconButton 
+                variant="contained"
+                color="primary"
+                size="medium"
+                className={classes.button}
+                onClick={Capture}
+                > 
+                <PhotoCameraIcon />
+                </IconButton>                                   
+                </div>      
+        </div>   
+        :
+        <div className={classes.container}>    
+            <div>
+                <img src={img_source} alt='selfie' className={classes.screenshot}/>
+                <div className={classes.buttonPanel}>
+                     {/* save button*/}
+                     <IconButton
                         variant="contained"
                         color="primary"
                         size="medium"
                         onClick={save_function}
-                        >
-                        Save
-                        <SaveIcon />
-                        </IconButton>      
+                        className= {classes.button}
+                    >
+                    Save
+                    <SaveIcon />
+                    </IconButton>      
                     {/* delete button*/}
                     <IconButton
                     onClick={() => setImg_source('')}
                     variant="contained"
                     color="primary"
                     size="medium"
-                    className={classes.delete_img}
+                    className={classes.button}
                     >
                         Discard
                         <DeleteIcon /> 
                     </IconButton>     
                 </div>
-                }
-            </div>
+                </div>
+             </div>   
+        }
+  
+            
+           
         </>
     )
 }
